@@ -1,14 +1,16 @@
 ﻿using NServiceBus;
+using NServiceBus.Logging;
 using QuartzNServiceBusSample.Messages;
-using log4net;
+
 
 namespace QuartzNServiceBusSample.Host
 {
     public class DoSomethingHandler : IHandleMessages<DoSomething>
     {
+        private static readonly ILog Logger = LogManager.GetLogger("Name");
         public void Handle(DoSomething message)
         {
-            LogManager.GetLogger(this.GetType()).Info("Doing something");
+            Logger.Info("Doing something");
         }
     }
 }

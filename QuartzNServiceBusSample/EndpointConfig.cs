@@ -24,11 +24,7 @@ namespace QuartzNServiceBusSample
         public void Init()
         {
             var configurer = Configure.Instance.Configurer;
-            configurer
-                .ConfigureComponent<IJobFactory>(
-                    () => new QuartzJobFactory(Configure.Instance.Builder),
-                    DependencyLifecycle.InstancePerUnitOfWork)
-                ;
+            configurer.ConfigureComponent<IJobFactory>(() => new QuartzJobFactory(Configure.Instance.Builder),DependencyLifecycle.InstancePerUnitOfWork);
             configurer.ConfigureComponent<IScheduler>(() =>
             {
                 var factoryx = new StdSchedulerFactory();
@@ -37,7 +33,6 @@ namespace QuartzNServiceBusSample
                 var scheduler = factoryx.GetScheduler();
                 scheduler.JobFactory = Configure.Instance.Builder.Build<IJobFactory>();
                 return scheduler;
-
             }, DependencyLifecycle.SingleInstance);
             configurer.ConfigureComponent<DoSomethingJob>(DependencyLifecycle.InstancePerUnitOfWork);
         }

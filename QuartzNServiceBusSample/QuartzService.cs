@@ -3,7 +3,7 @@ using Quartz;
 
 namespace QuartzNServiceBusSample
 {
-    public class QuartzService : IWantToRunAtStartup
+    public class QuartzService : IWantToRunWhenBusStartsAndStops
     {
         private readonly IScheduler _scheduler;
 
@@ -12,7 +12,7 @@ namespace QuartzNServiceBusSample
             _scheduler = scheduler;
         }
 
-        public void Run()
+        public void Start()
         {
             _scheduler.Start();
         }

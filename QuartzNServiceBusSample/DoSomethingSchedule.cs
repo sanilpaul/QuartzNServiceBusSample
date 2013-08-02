@@ -1,6 +1,4 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.Installation;
+﻿using NServiceBus;
 using Quartz;
 using QuartzNServiceBusSample.Messages;
 
